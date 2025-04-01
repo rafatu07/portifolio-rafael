@@ -45,7 +45,7 @@ const ContatoPage: NextPage = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <a
-              href="https://github.com/rafaturino"
+              href="https://github.com/rafatu07"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -53,7 +53,7 @@ const ContatoPage: NextPage = () => {
               <FaGithub className="w-6 h-6 text-gray-700 dark:text-gray-300" />
             </a>
             <a
-              href="https://www.linkedin.com/in/rafael-turino/"
+              href="https://www.linkedin.com/in/rafael-turino-de-oliveira-60000294/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors"
