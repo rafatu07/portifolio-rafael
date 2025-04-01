@@ -1,4 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Portfólio Rafael Turino
+
+Este é meu portfólio pessoal desenvolvido com Next.js, TypeScript e Tailwind CSS.
+
+## 🚀 Tecnologias
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [next-themes](https://github.com/pacocoursey/next-themes)
+
+## 📦 Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/rafatu007/portfolio.git
+```
+
+2. Instale as dependências:
+```bash
+cd portfolio
+npm install
+```
+
+3. Crie um arquivo `.env.local` na raiz do projeto e adicione as variáveis de ambiente necessárias:
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+4. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+O site estará disponível em [http://localhost:3000](http://localhost:3000).
+
+## 🛠️ Scripts
+
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Gera a versão de produção
+- `npm run start` - Inicia o servidor de produção
+- `npm run lint` - Executa o linter
+- `npm run format` - Formata o código com Prettier
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Autor
+
+- [Rafael Turino](https://github.com/rafaturino)
 
 ## Getting Started
 
