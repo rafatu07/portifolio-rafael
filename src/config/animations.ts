@@ -7,7 +7,7 @@ export const fadeInUp: Variants = {
     duration: 0.8,
     ease: "easeOut"
   }
-};
+} as const;
 
 export const staggerContainer: Variants = {
   animate: {
@@ -15,13 +15,13 @@ export const staggerContainer: Variants = {
       staggerChildren: 0.15
     }
   }
-};
+} as const;
 
 export const viewportOptions = {
   once: true,
   margin: "-100px",
   amount: 0.3
-};
+} as const;
 
 export const fadeIn: Variants = {
   initial: { opacity: 0 },
@@ -30,4 +30,4 @@ export const fadeIn: Variants = {
     duration: 0.5,
     ease: "easeOut"
   }
-}; 
+} as const; 
