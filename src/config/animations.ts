@@ -1,10 +1,5 @@
 import { Variants } from 'framer-motion';
 
-const transition: Transition = {
-  duration: 0.8,
-  ease: "easeOut"
-};
-
 export const fadeInUp: Variants = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
