@@ -2,8 +2,10 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaGitAlt, FaAngular, FaReact, FaGithub, FaLinkedin, FaWhatsapp, FaDownload } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaGitAlt, FaAngular, FaReact } from 'react-icons/fa';
 import { SiNextdotjs, SiNestjs, SiTypescript, SiJavascript, SiFirebase } from 'react-icons/si';
+import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 
 const HomePage: NextPage = () => {
   const habilidades = [
@@ -57,7 +59,12 @@ const HomePage: NextPage = () => {
       </Head>
 
       <main className="container mx-auto px-4 py-8">
-        <section className="text-center mb-16">
+        <motion.section 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Olá, eu sou <span className="text-primary-600 dark:text-primary-400">Rafael Turino</span>
           </h1>
@@ -91,27 +98,73 @@ const HomePage: NextPage = () => {
               Baixar Currículo
             </a>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Habilidades</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <motion.section 
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOptions}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h2 
+            className="text-3xl font-bold mb-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.5 }}
+          >
+            Habilidades
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={viewportOptions}
+          >
             {habilidades.map((habilidade) => (
-              <div key={habilidade.nome} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              <motion.div 
+                key={habilidade.nome} 
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                variants={fadeInUp}
+              >
                 <div className="flex justify-center mb-4">
                   {habilidade.icone}
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-center">{habilidade.nome}</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-center">{habilidade.descricao}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section>
-          <h2 className="text-3xl font-bold mb-8 text-center">Últimos Projetos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOptions}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h2 
+            className="text-3xl font-bold mb-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.5 }}
+          >
+            Últimos Projetos
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={viewportOptions}
+          >
+            <motion.div 
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+              variants={fadeInUp}
+            >
               <div className="relative h-48">
                 <Image
                   src="/projects/sistema-controlefaturas.jpeg"
@@ -137,8 +190,11 @@ const HomePage: NextPage = () => {
                   </svg>
                 </Link>
               </div>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            </motion.div>
+            <motion.div 
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+              variants={fadeInUp}
+            >
               <div className="relative h-48">
                 <Image
                   src="/projects/tanamaomenu-logo.jpeg"
@@ -163,8 +219,11 @@ const HomePage: NextPage = () => {
                   </svg>
                 </Link>
               </div>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            </motion.div>
+            <motion.div 
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+              variants={fadeInUp}
+            >
               <div className="relative h-48">
                 <Image
                   src="/projects/lojacontemamor-logo.jpeg"
@@ -189,9 +248,9 @@ const HomePage: NextPage = () => {
                   </svg>
                 </Link>
               </div>
-            </div>
-          </div>
-        </section>
+            </motion.div>
+          </motion.div>
+        </motion.section>
       </main>
     </>
   );

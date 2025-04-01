@@ -1,6 +1,8 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 
 const projetos = [
   {
@@ -22,7 +24,7 @@ const projetos = [
   {
     id: 4,
     titulo: 'Tá Na Mão Menu',
-    descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js, Firebase e JavaScript. Permite que os clientes visualizem o cardápio, façam pedidos e acompanhem o status do pedido em tempo real.',
+    descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js, Firebase e JavaScript. Permite que os clientes visualizem o cardápio, façam pedidos em tempo real.',
     imagem: '/projects/tanamaomenu-logo.jpeg',
     tecnologias: ['Next.js', 'JavaScript', 'Firebase', 'Tailwind CSS'],
     link: 'https://www.tanamaomenu.com.br/'
@@ -30,7 +32,7 @@ const projetos = [
   {
     id: 5,
     titulo: 'Loja Contém Amor',
-    descricao: 'E-commerce desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados. Inclui sistema de carrinho, pagamentos e área administrativa.',
+    descricao: 'Landing page desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados.',
     imagem: '/projects/lojacontemamor-logo.jpeg',
     tecnologias: ['Next.js', 'JavaScript', 'Tailwind CSS'],
     link: 'https://www.lojacontemamor.com.br/'
@@ -46,11 +48,28 @@ const ProjetosPage: NextPage = () => {
       </Head>
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-center">Meus Projetos</h1>
+        <motion.h1 
+          className="text-4xl font-bold mb-8 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          Meus Projetos
+        </motion.h1>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportOptions}
+        >
           {projetos.map((projeto) => (
-            <div key={projeto.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <motion.div 
+              key={projeto.id}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+              variants={fadeInUp}
+            >
               <div className="relative h-48">
                 <Image
                   src={projeto.imagem}
@@ -91,9 +110,9 @@ const ProjetosPage: NextPage = () => {
                   </svg>
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </main>
     </>
   );

@@ -1,9 +1,33 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { FaCode, FaServer, FaDatabase, FaPalette, FaLaptopCode, FaMobileAlt, FaDesktop, FaNetworkWired } from 'react-icons/fa';
-import { SiReact, SiNextdotjs, SiTypescript, SiNestjs, SiTailwindcss, SiAngular, SiFirebase } from 'react-icons/si';
+import { motion } from 'framer-motion';
+import { FaCode, FaServer, FaDatabase, FaPalette } from 'react-icons/fa';
+import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 
 const AboutPage: NextPage = () => {
+  const areas = [
+    {
+      titulo: 'Frontend',
+      descricao: 'Desenvolvimento de interfaces modernas e responsivas com React, Next.js e Angular.',
+      icone: <FaCode className="w-8 h-8 text-blue-500" />
+    },
+    {
+      titulo: 'Backend',
+      descricao: 'Desenvolvimento de APIs robustas e escaláveis com NestJS e Firebase.',
+      icone: <FaServer className="w-8 h-8 text-green-500" />
+    },
+    {
+      titulo: 'Banco de Dados',
+      descricao: 'Modelagem e implementação de bancos de dados relacionais e NoSQL.',
+      icone: <FaDatabase className="w-8 h-8 text-purple-500" />
+    },
+    {
+      titulo: 'UI/UX',
+      descricao: 'Desenvolvimento de interfaces modernas e responsivas com Tailwind CSS.',
+      icone: <FaPalette className="w-8 h-8 text-pink-500" />
+    }
+  ];
+
   return (
     <>
       <Head>
@@ -12,101 +36,68 @@ const AboutPage: NextPage = () => {
       </Head>
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8">Sobre Mim</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <div className="flex items-start space-x-4">
-              <FaLaptopCode className="w-8 h-8 text-primary-600 dark:text-primary-400 mt-1" />
-              <p className="text-gray-600 dark:text-gray-300">
-                Sou um desenvolvedor Full Stack com experiência em desenvolvimento web, mobile e desktop.
-                Possuo conhecimento em várias tecnologias, incluindo React, Next.js, TypeScript,
-                Angular, NestJS, Firebase, Git e outras ferramentas modernas.
-              </p>
-            </div>
-            <div className="flex items-start space-x-4">
-              <FaMobileAlt className="w-8 h-8 text-primary-600 dark:text-primary-400 mt-1" />
-              <p className="text-gray-600 dark:text-gray-300">
-                Minha experiência inclui o desenvolvimento de aplicações web responsivas, 
-                sistemas de gerenciamento de conteúdo, e-commerce, aplicações mobile e desktop.
-                Também tenho noções em integração com serviços externos, autenticação e autorização,
-                e otimização de performance.
-              </p>
-            </div>
-            <div className="flex items-start space-x-4">
-              <FaDesktop className="w-8 h-8 text-primary-600 dark:text-primary-400 mt-1" />
-              <p className="text-gray-600 dark:text-gray-300">
-                Sou um desenvolvedor apaixonado por aprender novas tecnologias e compartilhar conhecimento.
-                Acredito em trabalhar em equipe e em criar soluções que atendam às necessidades dos usuários
-                e dos negócios.
-              </p>
-            </div>
+        <motion.section 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h1 className="text-4xl font-bold mb-4">Sobre Mim</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Desenvolvedor Full Stack com experiência em desenvolvimento web, focado em criar soluções inovadoras e experiências digitais excepcionais.
+          </p>
+        </motion.section>
+
+        <motion.section 
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOptions}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center">Minha História</h2>
+          <div className="text-center prose dark:prose-invert max-w-3xl mx-auto">
+            <p>
+              Atualmente, trabalho como desenvolvedor Full Stack, desenvolvendo aplicações web modernas e 
+              performáticas. Minha stack principal inclui React, Next.js, TypeScript, NestJS e Firebase.
+            </p>
+            <p>
+              Sou apaixonado por criar soluções que resolvem problemas reais e melhoram a vida das pessoas. 
+              Acredito no poder da tecnologia para transformar o mundo e estou sempre em busca de novos desafios 
+              e oportunidades de aprendizado.
+            </p>
           </div>
-          <div className="space-y-6">
-            <h2 className="text-2xl font-semibold mb-4">Habilidades</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <FaCode className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-2" />
-                <h3 className="font-medium mb-2">Front-end</h3>
-                <div className="flex flex-wrap gap-2">
-                  <div className="flex items-center space-x-1">
-                    <SiReact className="w-5 h-5 text-blue-500" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">React</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <SiNextdotjs className="w-5 h-5 text-black dark:text-white" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Next.js</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <SiTypescript className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">TypeScript</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <SiAngular className="w-5 h-5 text-red-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Angular</span>
-                  </div>
+        </motion.section>
+
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOptions}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center">Áreas de Atuação</h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={viewportOptions}
+          >
+            {areas.map((area) => (
+              <motion.div 
+                key={area.titulo}
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                variants={fadeInUp}
+              >
+                <div className="flex justify-center mb-4">
+                  {area.icone}
                 </div>
-              </div>
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <FaServer className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-2" />
-                <h3 className="font-medium mb-2">Back-end</h3>
-                <div className="flex flex-wrap gap-2">
-                  <div className="flex items-center space-x-1">
-                    <SiNestjs className="w-5 h-5 text-red-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">NestJS</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <FaServer className="w-5 h-5 text-green-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Node.js</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <FaNetworkWired className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">APIs</span>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <FaDatabase className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-2" />
-                <h3 className="font-medium mb-2">Banco de Dados</h3>
-                <div className="flex flex-wrap gap-2">
-                  <div className="flex items-center space-x-1">
-                    <SiFirebase className="w-5 h-5 text-orange-500" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Firebase</span>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <FaPalette className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-2" />
-                <h3 className="font-medium mb-2">UI/UX</h3>
-                <div className="flex flex-wrap gap-2">
-                  <div className="flex items-center space-x-1">
-                    <SiTailwindcss className="w-5 h-5 text-cyan-500" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Tailwind CSS</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                <h3 className="text-xl font-semibold mb-2 text-center">{area.titulo}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-center">{area.descricao}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
       </main>
     </>
   );
