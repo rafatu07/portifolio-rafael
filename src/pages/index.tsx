@@ -88,7 +88,7 @@ const HomePage: NextPage = () => {
               Contato
             </Link>
             <a
-              href="/curriculo.pdf"
+              href="/curriculo-rafael.pdf"
               download
               className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
