@@ -1,13 +1,15 @@
-import { Variants } from 'framer-motion';
+import { Variants, Transition } from 'framer-motion';
+
+const transition: Transition = {
+  duration: 0.8,
+  ease: "easeOut"
+};
 
 export const fadeInUp: Variants = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { 
-    duration: 0.8,
-    ease: "easeOut"
-  }
-} as const;
+  transition
+};
 
 export const staggerContainer: Variants = {
   animate: {
@@ -15,19 +17,19 @@ export const staggerContainer: Variants = {
       staggerChildren: 0.15
     }
   }
-} as const;
+};
 
 export const viewportOptions = {
   once: true,
   margin: "-100px",
   amount: 0.3
-} as const;
+};
 
 export const fadeIn: Variants = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { 
+  transition: {
     duration: 0.5,
     ease: "easeOut"
   }
-} as const; 
+}; 
