@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaGitAlt, FaAngular, FaReact } from 'react-icons/fa';
 import { SiNextdotjs, SiNestjs, SiTypescript, SiJavascript, SiFirebase } from 'react-icons/si';
 import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
+import { NextImage } from '../components/NextImage'
 
 const HomePage: NextPage = () => {
   const habilidades = [
@@ -131,7 +131,7 @@ const HomePage: NextPage = () => {
               >
                 <div className="flex justify-center mb-4">
                   {habilidade.icone}
-                </div>
+        </div>
                 <h3 className="text-lg font-semibold mb-2 text-center">{habilidade.nome}</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-center">{habilidade.descricao}</p>
               </motion.div>
@@ -166,7 +166,7 @@ const HomePage: NextPage = () => {
               variants={fadeInUp}
             >
               <div className="relative h-48">
-                <Image
+                <NextImage
                   src="/projects/sistema-controlefaturas.jpeg"
                   alt="Sistema Controle Faturas"
                   fill
@@ -196,7 +196,7 @@ const HomePage: NextPage = () => {
               variants={fadeInUp}
             >
               <div className="relative h-48">
-                <Image
+                <NextImage
                   src="/projects/tanamaomenu-logo.jpeg"
                   alt="Tá Na Mão Menu"
                   fill
@@ -225,7 +225,7 @@ const HomePage: NextPage = () => {
               variants={fadeInUp}
             >
               <div className="relative h-48">
-                <Image
+                <NextImage
                   src="/projects/lojacontemamor-logo.jpeg"
                   alt="Loja Contém Amor"
                   fill
@@ -247,7 +247,7 @@ const HomePage: NextPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
-              </div>
+    </div>
             </motion.div>
           </motion.div>
         </motion.section>
