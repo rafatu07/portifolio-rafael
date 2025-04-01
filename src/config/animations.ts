@@ -1,4 +1,4 @@
-import { Variants, Transition } from 'framer-motion';
+import { Variants } from 'framer-motion';
 
 const transition: Transition = {
   duration: 0.8,
@@ -8,7 +8,10 @@ const transition: Transition = {
 export const fadeInUp: Variants = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition
+  transition: { 
+    duration: 0.8,
+    ease: "easeOut"
+  }
 };
 
 export const staggerContainer: Variants = {
@@ -28,7 +31,7 @@ export const viewportOptions = {
 export const fadeIn: Variants = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: {
+  transition: { 
     duration: 0.5,
     ease: "easeOut"
   }
