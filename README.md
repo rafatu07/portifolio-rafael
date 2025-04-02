@@ -13,12 +13,12 @@ Este é meu portfólio pessoal desenvolvido com Next.js, TypeScript e Tailwind C
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/rafatu007/portfolio.git
+git clone https://github.com/rafatu007/portfolio-rafael.git
 ```
 
 2. Instale as dependências:
 ```bash
-cd portfolio
+cd portfolio-rafael
 npm install
 ```
 
@@ -48,7 +48,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👨‍💻 Autor
 
-- [Rafael Turino](https://github.com/rafaturino)
+- [Rafael Turino](https://github.com/rafatu07)
 
 ## Getting Started
 

@@ -71,22 +71,24 @@ const HomePage: NextPage = () => {
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
             Desenvolvedor Full Stack apaixonado por criar soluções inovadoras e experiências digitais excepcionais.
           </p>
-          <div className="flex justify-center gap-4">
-            <Link
-              href="/projetos"
-              className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-            >
-              Ver Projetos
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-            <Link
-              href="/contato"
-              className="inline-flex items-center px-6 py-3 border border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
-            >
-              Contato
-            </Link>
+          <div className="flex flex-col justify-center sm:flex-row items-center gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/projetos"
+                className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                Ver Projetos
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+              <Link
+                href="/contato"
+                className="inline-flex items-center px-6 py-3 border border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+              >
+                Contato
+              </Link>
+            </div>
             <a
               href="/curriculo-rafael.pdf"
               download
@@ -236,7 +238,7 @@ const HomePage: NextPage = () => {
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Loja Contém Amor</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  E-commerce desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados.
+                Landing page desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados.
                 </p>
                 <Link
                   href="/projetos"

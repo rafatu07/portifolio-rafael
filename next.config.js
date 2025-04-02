@@ -10,10 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  i18n: {
-    locales: ['pt-BR'],
-    defaultLocale: 'pt-BR',
-  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
