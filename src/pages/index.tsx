@@ -2,10 +2,12 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaGitAlt, FaAngular, FaReact } from 'react-icons/fa';
+import { FaGitAlt, FaAngular, FaReact, FaWhatsapp } from 'react-icons/fa';
 import { SiNextdotjs, SiNestjs, SiTypescript, SiJavascript, SiFirebase } from 'react-icons/si';
 import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 import { NextImage } from '../components/NextImage'
+import WhatsAppButton from '../components/WhatsAppButton';
+import Packages from '../components/Packages';
 
 const HomePage: NextPage = () => {
   const habilidades = [
@@ -71,6 +73,39 @@ const HomePage: NextPage = () => {
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
             Desenvolvedor Full Stack apaixonado por criar soluções inovadoras e experiências digitais excepcionais.
           </p>
+          
+          {/* CTA Forte */}
+          <motion.div 
+            className="bg-gradient-to-r from-primary-600 to-primary-800 rounded-xl p-8 mb-8 text-white shadow-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Pronto para transformar suas ideias em realidade?
+            </h2>
+            <p className="text-lg mb-6">
+              Vamos criar algo incrível juntos! Entre em contato agora mesmo.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href="https://wa.me/5512991364890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <FaWhatsapp className="w-5 h-5 mr-2" />
+                Fale comigo no WhatsApp
+              </a>
+              <Link
+                href="/contato"
+                className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors"
+              >
+                Envie uma mensagem
+              </Link>
+            </div>
+          </motion.div>
+
           <div className="flex flex-col justify-center sm:flex-row items-center gap-4">
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -254,6 +289,8 @@ const HomePage: NextPage = () => {
           </motion.div>
         </motion.section>
       </main>
+      <Packages />
+      <WhatsAppButton />
     </>
   );
 };
