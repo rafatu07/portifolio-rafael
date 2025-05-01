@@ -22,6 +22,14 @@ const projetos = [
     link: 'https://www.rtisistema.com.br/'
   },
   {
+    id: 3,
+    titulo: 'Loja de Carros',
+    descricao: 'Plataforma de venda de veículos desenvolvida com Next.js e Tailwind CSS. Oferece catálogo de carros, filtros avançados, sistema de busca e seção de contato. Interface moderna e responsiva.',
+    imagem: '/projects/loja-carros.jpeg',
+    tecnologias: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    link: 'https://loja-de-carros-kappa.vercel.app/'
+  },
+  {
     id: 4,
     titulo: 'Tá Na Mão Menu',
     descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js, Firebase e JavaScript. Permite que os clientes visualizem o cardápio, façam pedidos em tempo real.',
