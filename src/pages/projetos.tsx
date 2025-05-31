@@ -2,35 +2,28 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
 import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 
 const projetos = [
   {
     id: 1,
-    titulo: 'Sistema Controle Faturas',
-    descricao: 'Sistema de gerenciamento de faturas e controle financeiro desenvolvido com Next.js, Firebase e JavaScript. Permite o cadastro, controle e acompanhamento de faturas, além de gerar relatórios financeiros.',
-    imagem: '/projects/sistema-controlefaturas.jpeg',
-    tecnologias: ['Next.js', 'JavaScript', 'Firebase', 'Tailwind CSS'],
-    link: 'https://menu-modulos.vercel.app/'
+    titulo: 'ImóvelPrime',
+    descricao: 'Plataforma completa de negócios imobiliários desenvolvida com Next.js e Tailwind CSS. Sistema robusto para compra, venda e aluguel de imóveis, com mais de 10.000 propriedades disponíveis, filtros avançados, sistema de favoritos e gestão completa de propriedades.',
+    imagem: '/projects/imobiliaria.jpeg',
+    tecnologias: ['Next.js', 'JavaScript', 'Tailwind CSS', 'Framer Motion'],
+    link: 'https://imobiliaria-website.vercel.app/'
   },
   {
     id: 2,
-    titulo: 'RTI Sistema',
-    descricao: 'Landing page profissional para empresa de desenvolvimento de software, apresentando serviços, soluções e diferenciais da empresa. Desenvolvida com foco em performance e experiência do usuário.',
-    imagem: '/projects/rtisistema-logo.jpeg',
-    tecnologias: ['Next.js', 'JavaScript', 'Tailwind CSS'],
-    link: 'https://www.rtisistema.com.br/'
+    titulo: 'Mônaco Automóveis',
+    descricao: 'Plataforma completa para revenda de veículos premium e zero km desenvolvida com Next.js. Sistema robusto com catálogo de carros, filtros avançados, sistema de comparação, depoimentos de clientes e formulário de contato. Integração com Firebase para gerenciamento de dados e Cloudinary para otimização de imagens.',
+    imagem: '/projects/loja-carros.jpeg',
+    tecnologias: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Cloudinary', 'Framer Motion'],
+    link: 'https://monacoautomoveis.com.br/'
   },
   {
     id: 3,
-    titulo: 'Loja de Carros',
-    descricao: 'Plataforma de venda de veículos desenvolvida com Next.js e Tailwind CSS. Oferece catálogo de carros, filtros avançados, sistema de busca e seção de contato. Interface moderna e responsiva.',
-    imagem: '/projects/loja-carros.jpeg',
-    tecnologias: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    link: 'https://loja-de-carros-kappa.vercel.app/'
-  },
-  {
-    id: 4,
     titulo: 'Tá Na Mão Menu',
     descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js, Firebase e JavaScript. Permite que os clientes visualizem o cardápio, façam pedidos em tempo real.',
     imagem: '/projects/tanamaomenu-logo.jpeg',
@@ -38,7 +31,23 @@ const projetos = [
     link: 'https://www.tanamaomenu.com.br/'
   },
   {
+    id: 4,
+    titulo: 'RTI Sistema',
+    descricao: 'Landing page profissional para empresa de desenvolvimento de software, apresentando serviços, soluções e diferenciais da empresa. Desenvolvida com foco em performance e experiência do usuário.',
+    imagem: '/projects/rtisistema-logo.jpeg',
+    tecnologias: ['Next.js', 'JavaScript', 'Tailwind CSS'],
+    link: 'https://www.rtisistema.com.br/'
+  },
+  {
     id: 5,
+    titulo: 'Sistema Controle Faturas',
+    descricao: 'Sistema de gerenciamento de faturas e controle financeiro desenvolvido com Next.js, Firebase e JavaScript. Permite o cadastro, controle e acompanhamento de faturas, além de gerar relatórios financeiros.',
+    imagem: '/projects/sistema-controlefaturas.jpeg',
+    tecnologias: ['Next.js', 'JavaScript', 'Firebase', 'Tailwind CSS'],
+    link: 'https://menu-modulos.vercel.app/'
+  },
+  {
+    id: 6,
     titulo: 'Loja Contém Amor',
     descricao: 'Landing page desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados.',
     imagem: '/projects/lojacontemamor-logo.jpeg',
@@ -48,6 +57,44 @@ const projetos = [
 ];
 
 const ProjetosPage: NextPage = () => {
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+
+  const toggleExpanded = (id: number) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, techCount: number) => {
+    if (techCount < 3) return; // Só ativa carrossel se há 3 ou mais tecnologias
+    
+    const container = e.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const containerWidth = rect.width;
+    
+    // Calcular a porcentagem da posição do mouse (0 = esquerda, 1 = direita)
+    const mousePercent = Math.max(0, Math.min(1, x / containerWidth));
+    
+    // Calcular o scroll máximo baseado no número de tecnologias
+    const maxScroll = (techCount - 2.5) * 80; // Ajustado para funcionar com 3 tecnologias
+    const scrollAmount = mousePercent * maxScroll;
+    
+    const techContainer = container.querySelector('.tech-scroll') as HTMLElement;
+    if (techContainer) {
+      techContainer.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const techContainer = container.querySelector('.tech-scroll') as HTMLElement;
+    if (techContainer) {
+      techContainer.style.transform = 'translateX(0)';
+    }
+  };
+
   return (
     <>
       <Head>
@@ -72,54 +119,104 @@ const ProjetosPage: NextPage = () => {
           whileInView="animate"
           viewport={viewportOptions}
         >
-          {projetos.map((projeto) => (
-            <motion.div 
-              key={projeto.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
-              variants={fadeInUp}
-            >
-              <div className="relative h-48">
-                <Image
-                  src={projeto.imagem}
-                  alt={projeto.titulo}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                  priority={projeto.id === 1}
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-xl font-semibold mb-2">{projeto.titulo}</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {projeto.descricao}
-                </p>
-                <div className="mb-4">
-                  <h3 className="text-sm font-semibold mb-2">Tecnologias utilizadas:</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {projeto.tecnologias.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-sm rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+          {projetos.map((projeto) => {
+            const isExpanded = expandedCards[projeto.id];
+            const shouldShowToggle = projeto.descricao.length > 150;
+            
+            return (
+              <motion.div 
+                key={projeto.id}
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col relative"
+                variants={fadeInUp}
+              >
+                <div className="relative h-48">
+                  <Image
+                    src={projeto.imagem}
+                    alt={projeto.titulo}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    priority={projeto.id === 1}
+                  />
+                </div>
+                <div className={`p-6 flex flex-col ${isExpanded ? 'pb-40' : 'pb-28'}`}>
+                  <h2 className="text-xl font-semibold mb-2">{projeto.titulo}</h2>
+                  <div className="text-gray-600 dark:text-gray-300 mb-3 text-sm leading-relaxed relative">
+                    <div className={`${!isExpanded && shouldShowToggle ? 'max-h-16 overflow-hidden' : ''} relative`}>
+                      <p>{projeto.descricao}</p>
+                      {!isExpanded && shouldShowToggle && (
+                        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white dark:from-gray-800 to-transparent"></div>
+                      )}
+                    </div>
+                    {shouldShowToggle && (
+                      <div className="flex justify-end mt-2">
+                        <button
+                          onClick={() => toggleExpanded(projeto.id)}
+                          className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 text-xs flex items-center gap-1 transition-colors"
+                        >
+                          {isExpanded ? (
+                            <>
+                              <span>mostrar menos</span>
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              </svg>
+                            </>
+                          ) : (
+                            <>
+                              <span>continuar lendo</span>
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <a
-                  href={projeto.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-                >
-                  Ver o site
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                <div className={`absolute left-4 right-4 ${isExpanded ? 'bottom-16' : 'bottom-12'}`}>
+                  <h3 className="text-sm font-semibold mb-2">Tecnologias utilizadas:</h3>
+                  <div 
+                    className="relative overflow-hidden"
+                    onMouseMove={(e) => handleMouseMove(e, projeto.tecnologias.length)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div 
+                      className="tech-scroll flex gap-2 transition-transform duration-300 ease-out"
+                    >
+                      {projeto.tecnologias.map((tech, index) => (
+                        <span
+                          key={`${tech}-${index}`}
+                          className="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full whitespace-nowrap flex-shrink-0"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    {/* Indicador visual de que há mais tecnologias */}
+                    {projeto.tecnologias.length >= 3 && (
+                      <div className="absolute top-0 right-0 bottom-0 w-4 bg-gradient-to-l from-white dark:from-gray-800 to-transparent pointer-events-none flex items-center justify-center">
+                        <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="absolute bottom-4 right-4">
+                  <a
+                    href={projeto.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 text-sm"
+                  >
+                    Ver o site
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </main>
     </>

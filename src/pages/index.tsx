@@ -53,6 +53,31 @@ const HomePage: NextPage = () => {
     }
   ];
 
+  // Apenas os 3 primeiros projetos (mais recentes)
+  const projetosRecentes = [
+    {
+      id: 1,
+      titulo: 'ImóvelPrime',
+      descricao: 'Plataforma completa para compra, venda e aluguel de imóveis. Desenvolvido com Next.js e Tailwind CSS.',
+      imagem: '/projects/imobiliaria.jpeg',
+      link: 'https://imobiliaria-website.vercel.app/'
+    },
+    {
+      id: 2,
+      titulo: 'Mônaco Automóveis',
+      descricao: 'Plataforma completa para revenda de veículos premium e zero km desenvolvida com Next.js.',
+      imagem: '/projects/loja-carros.jpeg',
+      link: 'https://monacoautomoveis.com.br/'
+    },
+    {
+      id: 3,
+      titulo: 'Tá Na Mão Menu',
+      descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js e JavaScript.',
+      imagem: '/projects/tanamaomenu-logo.jpeg',
+      link: 'https://www.tanamaomenu.com.br/'
+    }
+  ];
+
   return (
     <>
       <Head>
@@ -68,7 +93,7 @@ const HomePage: NextPage = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Olá, eu sou <span className="text-primary-600 dark:text-primary-400">Rafael Turino</span>
+            Olá, eu sou <span className="text-primary-600 dark:text-primary-400 animated-underline">Rafael Turino</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
             Desenvolvedor Full Stack apaixonado por criar soluções inovadoras e experiências digitais excepcionais.
@@ -198,94 +223,60 @@ const HomePage: NextPage = () => {
             whileInView="animate"
             viewport={viewportOptions}
           >
-            <motion.div 
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
-              variants={fadeInUp}
+            {projetosRecentes.map((projeto) => (
+              <motion.div 
+                key={projeto.id} 
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+                variants={fadeInUp}
+              >
+                <div className="relative h-48">
+                  <NextImage
+                    src={projeto.imagem}
+                    alt={projeto.titulo}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    priority
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{projeto.titulo}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{projeto.descricao}</p>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={projeto.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
+                    >
+                      Ver online
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          {/* Botão Ver mais projetos */}
+          <motion.div 
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Link
+              href="/projetos"
+              className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="relative h-48">
-                <NextImage
-                  src="/projects/sistema-controlefaturas.jpeg"
-                  alt="Sistema Controle Faturas"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                  priority
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Sistema Controle Faturas</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Sistema de gerenciamento de faturas e controle financeiro, desenvolvido com Next.js e JavaScript.
-                </p>
-                <Link
-                  href="/projetos"
-                  className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-                >
-                  Ver mais projetos
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
-              variants={fadeInUp}
-            >
-              <div className="relative h-48">
-                <NextImage
-                  src="/projects/tanamaomenu-logo.jpeg"
-                  alt="Tá Na Mão Menu"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Tá Na Mão Menu</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Sistema de cardápio digital para restaurantes, desenvolvido com Next.js e JavaScript.
-                </p>
-                <Link
-                  href="/projetos"
-                  className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-                >
-                  Ver mais projetos
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
-              variants={fadeInUp}
-            >
-              <div className="relative h-48">
-                <NextImage
-                  src="/projects/lojacontemamor-logo.jpeg"
-                  alt="Loja Contém Amor"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Loja Contém Amor</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Landing page desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados.
-                </p>
-                <Link
-                  href="/projetos"
-                  className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-                >
-                  Ver mais projetos
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-    </div>
-            </motion.div>
+              Ver mais projetos
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </motion.div>
         </motion.section>
       </main>
