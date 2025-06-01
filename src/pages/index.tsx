@@ -8,6 +8,7 @@ import { fadeInUp, staggerContainer, viewportOptions } from '../config/animation
 import { NextImage } from '../components/NextImage'
 import WhatsAppButton from '../components/WhatsAppButton';
 import Packages from '../components/Packages';
+import TypingAnimation from '../components/TypingAnimation';
 
 const HomePage: NextPage = () => {
   const habilidades = [
@@ -93,11 +94,20 @@ const HomePage: NextPage = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Olá, eu sou <span className="text-primary-600 dark:text-primary-400 animated-underline">Rafael Turino</span>
+            Olá, eu sou <span className="text-primary-600 dark:text-primary-400">Rafael Turino</span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-            Desenvolvedor Full Stack apaixonado por criar soluções inovadoras e experiências digitais excepcionais.
-          </p>
+          <div className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            <TypingAnimation 
+              texts={[
+                "Desenvolvedor Full Stack",
+                "Criador de soluções inovadoras e experiências digitais",
+                "Apaixonado por transformar ideias em realidade"
+              ]}
+              speed={50}
+              pause={3000}
+              className="text-primary-600 dark:text-primary-400"
+            />
+          </div>
           
           {/* CTA Forte */}
           <motion.div 
@@ -152,7 +162,7 @@ const HomePage: NextPage = () => {
             <a
               href="/curriculo-rafael.pdf"
               download
-              className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-white dark:bg-white text-primary-600 dark:text-primary-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-100 transition-colors animate-pulse-scale"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

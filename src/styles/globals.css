@@ -71,6 +71,197 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+
+  /* Novas animações para destacar habilidades frontend */
+  .skill-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .skill-card:hover::before {
+    left: 100%;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Animação para ícones das habilidades */
+  .skill-icon {
+    transition: all 0.3s ease;
+  }
+
+  .skill-card:hover .skill-icon {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  /* Animação de typing effect */
+  .typing-animation {
+    border-right: 2px solid;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { border-color: transparent; }
+    51%, 100% { border-color: currentColor; }
+  }
+
+  /* Animação de float para elementos especiais */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Animação de pulse para botões importantes */
+  .pulse-cta {
+    animation: pulse-glow 2s infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+    }
+    50% { 
+      transform: scale(1.02);
+      box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    }
+  }
+
+  /* Animação de reveal para projetos */
+  .project-reveal {
+    mask: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+    mask-size: 200% 100%;
+    animation: reveal 1s ease-in-out forwards;
+  }
+
+  @keyframes reveal {
+    0% { mask-position: -100% 0; }
+    100% { mask-position: 100% 0; }
+  }
+
+  /* Efeito de glow nos cards de projeto */
+  .project-card {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: linear-gradient(45deg, 
+      rgba(59, 130, 246, 0.1), 
+      rgba(16, 185, 129, 0.1), 
+      rgba(245, 101, 101, 0.1),
+      rgba(139, 92, 246, 0.1)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 4s ease infinite;
+    pointer-events: none;
+  }
+
+  .project-card:hover::after {
+    opacity: 1;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Animação de código digitando */
+  .code-typing {
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .1em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: currentColor; }
+  }
+
+  /* Efeito de partículas nos cards */
+  .particle-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .particle-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+    animation: particle-float 6s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .particle-effect:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes particle-float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+  }
 }
 
 /* Animações */
