@@ -14,7 +14,7 @@ const SobrePage: NextPage = () => {
     },
     {
       titulo: 'Backend',
-      descricao: 'Desenvolvimento de APIs robustas e escaláveis com NestJS e Firebase.',
+      descricao: 'Desenvolvimento de APIs robustas e escaláveis com Node.js e Firebase.',
       icone: <FaServer className="w-8 h-8 text-green-500" />
     },
     {
@@ -90,7 +90,7 @@ const SobrePage: NextPage = () => {
           <div className="prose dark:prose-invert max-w-3xl mx-auto">
             <p className="text-lg text-center text-gray-600 dark:text-gray-300">
               Atualmente, desenvolvendo aplicações web modernas e 
-              performáticas. Minha stack principal inclui React, Next.js, TypeScript, NestJS e Firebase.
+              performáticas. Minha stack principal inclui React, Next.js, TypeScript, Node.js e Firebase, além de outras tecnologias que utilizo de acordo com as necessidades de cada projeto.
             </p>
             <p className="text-lg text-center text-gray-600 dark:text-gray-300">
               Sou apaixonado por criar soluções que resolvem problemas reais e melhoram a vida das pessoas. 

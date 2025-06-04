@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaGitAlt, FaAngular, FaReact, FaWhatsapp } from 'react-icons/fa';
-import { SiNextdotjs, SiNestjs, SiTypescript, SiJavascript, SiFirebase } from 'react-icons/si';
+import { FaGitAlt, FaAngular, FaReact, FaWhatsapp, FaVuejs, FaNodeJs, FaPhp } from 'react-icons/fa';
+import { SiNextdotjs, SiNestjs, SiTypescript, SiJavascript, SiFirebase, SiPostgresql } from 'react-icons/si';
 import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 import { NextImage } from '../components/NextImage'
 import WhatsAppButton from '../components/WhatsAppButton';
@@ -23,9 +23,19 @@ const HomePage: NextPage = () => {
       icone: <SiTypescript className="w-8 h-8 text-blue-600" />
     },
     {
+      nome: 'Node.js',
+      descricao: 'Desenvolvimento backend com JavaScript/TypeScript',
+      icone: <FaNodeJs className="w-8 h-8 text-green-600" />
+    },
+    {
       nome: 'React',
       descricao: 'Desenvolvimento de interfaces modernas e interativas',
       icone: <FaReact className="w-8 h-8 text-blue-400" />
+    },
+    {
+      nome: 'PostgreSQL',
+      descricao: 'Banco de dados relacional robusto e escalável',
+      icone: <SiPostgresql className="w-8 h-8 text-blue-500" />
     },
     {
       nome: 'Next.js',
@@ -33,14 +43,19 @@ const HomePage: NextPage = () => {
       icone: <SiNextdotjs className="w-8 h-8 text-black dark:text-white" />
     },
     {
-      nome: 'Firebase',
-      descricao: 'Desenvolvimento de aplicações com backend serverless',
-      icone: <SiFirebase className="w-8 h-8 text-orange-500" />
+      nome: 'Vue.js',
+      descricao: 'Desenvolvimento de interfaces reativas e progressivas',
+      icone: <FaVuejs className="w-8 h-8 text-green-500" />
     },
     {
       nome: 'Angular',
       descricao: 'Desenvolvimento de aplicações web robustas e escaláveis',
       icone: <FaAngular className="w-8 h-8 text-red-500" />
+    },
+    {
+      nome: 'PHP',
+      descricao: 'Desenvolvimento backend robusto e confiável',
+      icone: <FaPhp className="w-8 h-8 text-indigo-600" />
     },
     {
       nome: 'NestJS',
@@ -51,6 +66,11 @@ const HomePage: NextPage = () => {
       nome: 'Git',
       descricao: 'Controle de versão e colaboração em equipe',
       icone: <FaGitAlt className="w-8 h-8 text-orange-600" />
+    },
+    {
+      nome: 'Firebase',
+      descricao: 'Desenvolvimento de aplicações com backend serverless',
+      icone: <SiFirebase className="w-8 h-8 text-orange-500" />
     }
   ];
 
@@ -280,7 +300,7 @@ const HomePage: NextPage = () => {
           >
             <Link
               href="/projetos"
-              className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-lg shadow-lg transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:-translate-y-1"
             >
               Ver mais projetos
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
