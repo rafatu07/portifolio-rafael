@@ -9,8 +9,10 @@ import { NextImage } from '../components/NextImage'
 import WhatsAppButton from '../components/WhatsAppButton';
 import Packages from '../components/Packages';
 import TypingAnimation from '../components/TypingAnimation';
+import { useState } from 'react';
 
 const HomePage: NextPage = () => {
+  const [showAllSkills, setShowAllSkills] = useState(false);
   const habilidades = [
     {
       nome: 'JavaScript',
@@ -199,36 +201,82 @@ const HomePage: NextPage = () => {
           viewport={viewportOptions}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <motion.h2 
-            className="text-3xl font-bold mb-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOptions}
-            transition={{ duration: 0.5 }}
-          >
-            Habilidades
-          </motion.h2>
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={viewportOptions}
-          >
-            {habilidades.map((habilidade) => (
-              <motion.div 
-                key={habilidade.nome} 
-                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
-                variants={fadeInUp}
-              >
-                <div className="flex justify-center mb-4">
-                  {habilidade.icone}
-        </div>
-                <h3 className="text-lg font-semibold mb-2 text-center">{habilidade.nome}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center">{habilidade.descricao}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="text-center mb-8">
+            <motion.h2 
+              className="text-3xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOptions}
+              transition={{ duration: 0.5 }}
+            >
+              Habilidades
+            </motion.h2>
+            <button
+              onClick={() => setShowAllSkills(!showAllSkills)}
+              className="px-4 py-2 text-sm font-medium rounded-lg border border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+            >
+              {showAllSkills ? 'Ver em Carrossel' : 'Ver Todos'}
+            </button>
+          </div>
+
+          {showAllSkills ? (
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-4 gap-6"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={viewportOptions}
+            >
+              {habilidades.map((habilidade) => (
+                <motion.div 
+                  key={habilidade.nome} 
+                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                  variants={fadeInUp}
+                >
+                  <div className="flex justify-center mb-4">
+                    {habilidade.icone}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2 text-center">{habilidade.nome}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center">{habilidade.descricao}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <div className="relative w-full overflow-hidden py-4">
+              <div className="flex flex-nowrap animate-marquee hover:[animation-play-state:paused]">
+                <div className="flex flex-shrink-0 justify-around gap-6 pr-6">
+                  {habilidades.map((habilidade) => (
+                    <div 
+                      key={habilidade.nome} 
+                      className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex-shrink-0 w-64 h-full"
+                    >
+                      <div className="flex justify-center mb-4">
+                        {habilidade.icone}
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2 text-center">{habilidade.nome}</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 text-center">{habilidade.descricao}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-shrink-0 justify-around gap-6 pr-6" aria-hidden="true">
+                  {habilidades.map((habilidade) => (
+                    <div 
+                      key={`${habilidade.nome}-duplicate`} 
+                      className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex-shrink-0 w-64 h-full"
+                    >
+                      <div className="flex justify-center mb-4">
+                        {habilidade.icone}
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2 text-center">{habilidade.nome}</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 text-center">{habilidade.descricao}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
+              <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
+            </div>
+          )}
         </motion.section>
 
         <motion.section
