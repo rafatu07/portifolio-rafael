@@ -9,10 +9,28 @@ import { NextImage } from '../components/NextImage'
 import WhatsAppButton from '../components/WhatsAppButton';
 import Packages from '../components/Packages';
 import TypingAnimation from '../components/TypingAnimation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const HomePage: NextPage = () => {
   const [showAllSkills, setShowAllSkills] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // Detecta se é dispositivo móvel quando o componente montar
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Verificação inicial
+    checkIfMobile();
+    
+    // Adiciona listener para redimensionamento
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup do listener quando o componente desmontar
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+  
   const habilidades = [
     {
       nome: 'JavaScript',
@@ -211,15 +229,17 @@ const HomePage: NextPage = () => {
             >
               Habilidades
             </motion.h2>
-            <button
-              onClick={() => setShowAllSkills(!showAllSkills)}
-              className="px-4 py-2 text-sm font-medium rounded-lg border border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
-            >
-              {showAllSkills ? 'Ver em Carrossel' : 'Ver Todos'}
-            </button>
+            {!isMobile && (
+              <button
+                onClick={() => setShowAllSkills(!showAllSkills)}
+                className="px-4 py-2 text-sm font-medium rounded-lg border border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+              >
+                {showAllSkills ? 'Ver em Carrossel' : 'Ver Todos'}
+              </button>
+            )}
           </div>
 
-          {showAllSkills ? (
+          {(showAllSkills || isMobile) ? (
             <motion.div
               className="grid grid-cols-2 md:grid-cols-4 gap-6"
               variants={staggerContainer}
