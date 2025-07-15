@@ -98,24 +98,24 @@ const HomePage: NextPage = () => {
   const projetosRecentes = [
     {
       id: 1,
+      titulo: 'AtivaBOT',
+      descricao: 'Sistema de atendimento multicanal com dashboard interativo, painel para múltiplas conversas e chatbots, desenvolvido com Vue.js e Node.js.',
+      imagem: '/projects/ativabot.jpeg',
+      link: 'https://ativabot.com.br/'
+    },
+    {
+      id: 2,
       titulo: 'ImóvelPrime',
       descricao: 'Plataforma completa para compra, venda e aluguel de imóveis. Desenvolvido com Next.js e Tailwind CSS.',
       imagem: '/projects/imobiliaria.jpeg',
       link: 'https://imobiliaria-website.vercel.app/'
     },
     {
-      id: 2,
+      id: 3,
       titulo: 'Mônaco Automóveis',
       descricao: 'Plataforma completa para revenda de veículos premium e zero km desenvolvida com Next.js.',
       imagem: '/projects/loja-carros.jpeg',
       link: 'https://monacoautomoveis.com.br/'
-    },
-    {
-      id: 3,
-      titulo: 'Tá Na Mão Menu',
-      descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js e JavaScript.',
-      imagem: '/projects/tanamaomenu-logo.jpeg',
-      link: 'https://www.tanamaomenu.com.br/'
     }
   ];
 

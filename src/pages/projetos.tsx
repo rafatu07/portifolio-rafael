@@ -8,6 +8,14 @@ import { fadeInUp, staggerContainer, viewportOptions } from '../config/animation
 const projetos = [
   {
     id: 1,
+    titulo: 'AtivaBOT',
+    descricao: 'Sistema avançado de atendimento multicanal com foco em performance, escalabilidade e experiência do usuário. Integra diversos módulos voltados ao suporte técnico e comercial via canais digitais, com dashboard interativo de métricas em tempo real, painel de atendimento com suporte a múltiplas conversas, templates, etiquetas, mensagens rápidas, Kanban de atendimento, gerenciamento de usuários e permissões, relatórios personalizados e administração de chatbots. Interface 100% responsiva e acessível.',
+    imagem: '/projects/ativabot.jpeg',
+    tecnologias: ['Vue.js', 'Quasar Framework', 'Node.js', 'PostgreSQL'],
+    link: 'https://ativabot.com.br/'
+  },
+  {
+    id: 2,
     titulo: 'ImóvelPrime',
     descricao: 'Plataforma completa de negócios imobiliários desenvolvida com Next.js e Tailwind CSS. Sistema robusto para compra, venda e aluguel de imóveis, com mais de 10.000 propriedades disponíveis, filtros avançados, sistema de favoritos e gestão completa de propriedades.',
     imagem: '/projects/imobiliaria.jpeg',
@@ -15,7 +23,7 @@ const projetos = [
     link: 'https://imobiliaria-website.vercel.app/'
   },
   {
-    id: 2,
+    id: 3,
     titulo: 'Mônaco Automóveis',
     descricao: 'Plataforma completa para revenda de veículos premium e zero km desenvolvida com Next.js. Sistema robusto com catálogo de carros, filtros avançados, sistema de comparação, depoimentos de clientes e formulário de contato. Integração com Firebase para gerenciamento de dados e Cloudinary para otimização de imagens.',
     imagem: '/projects/loja-carros.jpeg',
@@ -23,7 +31,7 @@ const projetos = [
     link: 'https://monacoautomoveis.com.br/'
   },
   {
-    id: 3,
+    id: 4,
     titulo: 'Tá Na Mão Menu',
     descricao: 'Sistema de cardápio digital para restaurantes, desenvolvido com Next.js, Firebase e JavaScript. Permite que os clientes visualizem o cardápio, façam pedidos em tempo real.',
     imagem: '/projects/tanamaomenu-logo.jpeg',
@@ -31,7 +39,7 @@ const projetos = [
     link: 'https://www.tanamaomenu.com.br/'
   },
   {
-    id: 4,
+    id: 5,
     titulo: 'RTI Sistema',
     descricao: 'Landing page profissional para empresa de desenvolvimento de software, apresentando serviços, soluções e diferenciais da empresa. Desenvolvida com foco em performance e experiência do usuário.',
     imagem: '/projects/rtisistema-logo.jpeg',
@@ -39,7 +47,7 @@ const projetos = [
     link: 'https://www.rtisistema.com.br/'
   },
   {
-    id: 5,
+    id: 6,
     titulo: 'Sistema Controle Faturas',
     descricao: 'Sistema de gerenciamento de faturas e controle financeiro desenvolvido com Next.js, Firebase e JavaScript. Permite o cadastro, controle e acompanhamento de faturas, além de gerar relatórios financeiros.',
     imagem: '/projects/sistema-controlefaturas.jpeg',
@@ -47,7 +55,7 @@ const projetos = [
     link: 'https://menu-modulos.vercel.app/'
   },
   {
-    id: 6,
+    id: 7,
     titulo: 'Loja Contém Amor',
     descricao: 'Landing page desenvolvido com Next.js e Tailwind CSS, focado em produtos artesanais e personalizados.',
     imagem: '/projects/lojacontemamor-logo.jpeg',
