@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { fadeInUp, staggerContainer, viewportOptions } from '../config/animations';
 
 const projetos = [
@@ -66,6 +66,25 @@ const projetos = [
 
 const ProjetosPage: NextPage = () => {
   const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const projetosPorPagina = 6;
+  
+  // Calcular número total de páginas
+  const totalPaginas = Math.ceil(projetos.length / projetosPorPagina);
+  
+  // Obter projetos da página atual
+  const projetosAtuais = useMemo(() => {
+    const indiceInicial = (paginaAtual - 1) * projetosPorPagina;
+    return projetos.slice(indiceInicial, indiceInicial + projetosPorPagina);
+  }, [paginaAtual]);
+
+  const irParaPagina = (numeroPagina: number) => {
+    if (numeroPagina >= 1 && numeroPagina <= totalPaginas) {
+      setPaginaAtual(numeroPagina);
+      // Rolar para o topo da seção quando mudar de página
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const toggleExpanded = (id: number) => {
     setExpandedCards(prev => ({
@@ -126,8 +145,9 @@ const ProjetosPage: NextPage = () => {
           initial="initial"
           whileInView="animate"
           viewport={viewportOptions}
+          key={`pagina-${paginaAtual}`} // Forçar re-render da animação quando mudar de página
         >
-          {projetos.map((projeto) => {
+          {projetosAtuais.map((projeto) => {
             const isExpanded = expandedCards[projeto.id];
             const shouldShowToggle = projeto.descricao.length > 150;
             
@@ -226,6 +246,58 @@ const ProjetosPage: NextPage = () => {
             );
           })}
         </motion.div>
+
+        {/* Paginação */}
+        {totalPaginas > 1 && (
+          <div className="mt-12 flex justify-center">
+            <nav className="flex items-center gap-2">
+              <button 
+                onClick={() => irParaPagina(paginaAtual - 1)}
+                disabled={paginaAtual === 1}
+                className={`p-2 rounded-lg ${
+                  paginaAtual === 1 
+                  ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' 
+                  : 'text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                }`}
+                aria-label="Página anterior"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              {/* Números das páginas */}
+              {Array.from({ length: totalPaginas }, (_, i) => i + 1).map(numero => (
+                <button
+                  key={numero}
+                  onClick={() => irParaPagina(numero)}
+                  className={`px-3 py-1 rounded-lg ${
+                    paginaAtual === numero
+                    ? 'bg-primary-600 text-white'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                  }`}
+                >
+                  {numero}
+                </button>
+              ))}
+              
+              <button 
+                onClick={() => irParaPagina(paginaAtual + 1)}
+                disabled={paginaAtual === totalPaginas}
+                className={`p-2 rounded-lg ${
+                  paginaAtual === totalPaginas 
+                  ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed' 
+                  : 'text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                }`}
+                aria-label="Próxima página"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </nav>
+          </div>
+        )}
       </main>
     </>
   );
