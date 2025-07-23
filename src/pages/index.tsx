@@ -14,6 +14,11 @@ import { useState, useEffect } from 'react';
 const HomePage: NextPage = () => {
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [imageModal, setImageModal] = useState<{ isOpen: boolean; src: string; alt: string }>({
+    isOpen: false,
+    src: '',
+    alt: ''
+  });
   
   useEffect(() => {
     // Detecta se é dispositivo móvel quando o componente montar
@@ -98,26 +103,34 @@ const HomePage: NextPage = () => {
   const projetosRecentes = [
     {
       id: 1,
+      titulo: 'Louvemais',
+      descricao: 'Sistema completo para gestão de grupos de louvor com PWA. Gestão de escalas, repertórios digitais e controle de equipe.',
+      imagem: '/projects/louvemais.jpeg',
+      link: 'https://grupolouvor-app.vercel.app/'
+    },
+    {
+      id: 2,
       titulo: 'AtivaBOT',
       descricao: 'Sistema de atendimento multicanal com dashboard interativo, painel para múltiplas conversas e chatbots, desenvolvido com Vue.js e Node.js.',
       imagem: '/projects/ativabot.jpeg',
       link: 'https://ativabot.com.br/'
     },
     {
-      id: 2,
+      id: 3,
       titulo: 'ImóvelPrime',
       descricao: 'Plataforma completa para compra, venda e aluguel de imóveis. Desenvolvido com Next.js e Tailwind CSS.',
       imagem: '/projects/imobiliaria.jpeg',
       link: 'https://imobiliaria-website.vercel.app/'
-    },
-    {
-      id: 3,
-      titulo: 'Mônaco Automóveis',
-      descricao: 'Plataforma completa para revenda de veículos premium e zero km desenvolvida com Next.js.',
-      imagem: '/projects/loja-carros.jpeg',
-      link: 'https://monacoautomoveis.com.br/'
     }
   ];
+
+  const openImageModal = (src: string, alt: string) => {
+    setImageModal({ isOpen: true, src, alt });
+  };
+
+  const closeImageModal = () => {
+    setImageModal({ isOpen: false, src: '', alt: '' });
+  };
 
   return (
     <>
@@ -327,15 +340,25 @@ const HomePage: NextPage = () => {
                 className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
                 variants={fadeInUp}
               >
-                <div className="relative h-48">
+                <div 
+                  className="relative h-48 cursor-pointer group overflow-hidden"
+                  onClick={() => openImageModal(projeto.imagem, projeto.titulo)}
+                >
                   <NextImage
                     src={projeto.imagem}
                     alt={projeto.titulo}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    className="object-cover transition-all duration-300 group-hover:scale-110"
                     priority
                   />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg">
+                      <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{projeto.titulo}</h3>
@@ -377,6 +400,34 @@ const HomePage: NextPage = () => {
             </Link>
           </motion.div>
         </motion.section>
+        {/* Modal da Imagem */}
+        {imageModal.isOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+            onClick={closeImageModal}
+          >
+            <div className="relative max-w-4xl max-h-full">
+              <button
+                onClick={closeImageModal}
+                className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
+                aria-label="Fechar modal"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <NextImage
+                src={imageModal.src}
+                alt={imageModal.alt}
+                width={800}
+                height={600}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                quality={100}
+              />
+              <p className="text-white text-center mt-2 text-sm">{imageModal.alt}</p>
+            </div>
+          </div>
+        )}
       </main>
       <Packages />
       <WhatsAppButton />
