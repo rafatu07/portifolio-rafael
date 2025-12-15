@@ -102,6 +102,13 @@ const HomePage: NextPage = () => {
   // Apenas os 3 primeiros projetos (mais recentes)
   const projetosRecentes = [
     {
+      id: 9,
+      titulo: 'Colégio Integração',
+      descricao: 'Site institucional completo para colégio desenvolvido com Vite e React. Plataforma moderna e responsiva com apresentação da instituição.',
+      imagem: '/projects/colegio-integracao.jpeg',
+      link: 'https://www.colegiointegracaotaubate.com.br'
+    },
+    {
       id: 1,
       titulo: 'Louvemais',
       descricao: 'Sistema completo para gestão de grupos de louvor com PWA. Gestão de escalas, repertórios digitais e controle de equipe.',
@@ -114,13 +121,6 @@ const HomePage: NextPage = () => {
       descricao: 'Sistema de atendimento multicanal com dashboard interativo, painel para múltiplas conversas e chatbots, desenvolvido com Vue.js e Node.js.',
       imagem: '/projects/ativabot.jpeg',
       link: 'https://ativabot.com.br/'
-    },
-    {
-      id: 3,
-      titulo: 'ImóvelPrime',
-      descricao: 'Plataforma completa para compra, venda e aluguel de imóveis. Desenvolvido com Next.js e Tailwind CSS.',
-      imagem: '/projects/imobiliaria.jpeg',
-      link: 'https://imobiliaria-website.vercel.app/'
     }
   ];
 

@@ -7,6 +7,14 @@ import { fadeInUp, staggerContainer, viewportOptions } from '../config/animation
 
 const projetos = [
   {
+    id: 9,
+    titulo: 'Colégio Integração',
+    descricao: 'Site institucional completo para colégio desenvolvido com Vite e React. Plataforma moderna e responsiva com apresentação da instituição, informações sobre cursos, estrutura, corpo docente e formulários de contato. Interface otimizada para performance e experiência do usuário.',
+    imagem: '/projects/colegio-integracao.jpeg',
+    tecnologias: ['Vite', 'React', 'JavaScript', 'Tailwind CSS'],
+    link: 'https://www.colegiointegracaotaubate.com.br'
+  },
+  {
     id: 1,
     titulo: 'Louvemais',
     descricao: 'Sistema completo para gestão de grupos de louvor com Progressive Web App (PWA). Oferece gestão inteligente de escalas com controle de disponibilidade e confirmação automática, repertórios digitais organizados, gerenciamento completo de equipe com permissões, controle de indisponibilidade dos integrantes, notificações via WhatsApp, relatórios personalizados e interface 100% responsiva. Desenvolvido com foco na experiência mobile-first para líderes de louvor e suas equipes.',
