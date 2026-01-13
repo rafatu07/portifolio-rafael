@@ -7,6 +7,14 @@ import { fadeInUp, staggerContainer, viewportOptions } from '../config/animation
 
 const projetos = [
   {
+    id: 10,
+    titulo: 'Dr. Matheus Duque',
+    descricao: 'Site institucional completo para cirurgião oncológico desenvolvido com foco em apresentação profissional e acolhimento. Plataforma moderna e responsiva com seções sobre o médico, convênios aceitos (Unimed, Bradesco Saúde, SulAmérica, Amil, Porto Seguro, Notre Dame, Cassi, Particular), áreas de atuação detalhadas (Oncologia Ginecológica, Tumores Gastrointestinais, Oncologia Cutânea e de Partes Moles) e integração direta com WhatsApp para agendamento de consultas. Design acolhedor e otimizado para conversão, com informações de localização e credenciais profissionais.',
+    imagem: '/projects/drmatheusduque.jpeg',
+    tecnologias: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    link: 'https://drmatheusduque.vercel.app/'
+  },
+  {
     id: 9,
     titulo: 'Colégio Integração',
     descricao: 'Site institucional completo para colégio desenvolvido com Vite e React. Plataforma moderna e responsiva com apresentação da instituição, informações sobre cursos, estrutura, corpo docente e formulários de contato. Interface otimizada para performance e experiência do usuário.',

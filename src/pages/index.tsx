@@ -102,6 +102,13 @@ const HomePage: NextPage = () => {
   // Apenas os 3 primeiros projetos (mais recentes)
   const projetosRecentes = [
     {
+      id: 10,
+      titulo: 'Dr. Matheus Duque',
+      descricao: 'Site institucional completo para cirurgião oncológico desenvolvido com foco em apresentação profissional e acolhimento. Plataforma moderna e responsiva com seções sobre o médico, convênios aceitos e integração direta com WhatsApp para agendamento.',
+      imagem: '/projects/drmatheusduque.jpeg',
+      link: 'https://drmatheusduque.vercel.app/'
+    },
+    {
       id: 9,
       titulo: 'Colégio Integração',
       descricao: 'Site institucional completo para colégio desenvolvido com Vite e React. Plataforma moderna e responsiva com apresentação da instituição.',
@@ -114,13 +121,6 @@ const HomePage: NextPage = () => {
       descricao: 'Sistema completo para gestão de grupos de louvor com PWA. Gestão de escalas, repertórios digitais e controle de equipe.',
       imagem: '/projects/louvemais.jpeg',
       link: 'https://grupolouvor-app.vercel.app/'
-    },
-    {
-      id: 2,
-      titulo: 'AtivaBOT',
-      descricao: 'Sistema de atendimento multicanal com dashboard interativo, painel para múltiplas conversas e chatbots, desenvolvido com Vue.js e Node.js.',
-      imagem: '/projects/ativabot.jpeg',
-      link: 'https://ativabot.com.br/'
     }
   ];
 
